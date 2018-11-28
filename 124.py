@@ -12,6 +12,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Solution(object):
     def maxPathSum(self, root):
         """
@@ -19,11 +20,13 @@ class Solution(object):
         :rtype: int
         """
         maxPath = [float('-inf')]
-        def dfs(root,path):
+
+        def dfs(root, path):
             if not root: return 0
-            l=max(0,dfs(root.left,path))
-            r=max(0,dfs(root.right,path))
-            path[0]=max(path[0],l+r+root.val)
-            return root.val+max(l,r)
-        dfs(root,maxPath)
+            l = max(0, dfs(root.left, path))
+            r = max(0, dfs(root.right, path))
+            path[0] = max(path[0], l + r + root.val)
+            return root.val + max(l, r)
+
+        dfs(root, maxPath)
         return maxPath[0]
